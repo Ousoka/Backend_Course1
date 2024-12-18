@@ -1,9 +1,8 @@
-package sn.diamniadio.polytech.ZooSchool;
+package sn.ousoka.First_Project;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
-public class School {
+public class School_foreach_code {
     private String nom;
     private int id;
     private List<Dresseur> listDresseur;
@@ -37,16 +36,6 @@ public class School {
 
 
     }
-    // private String afficherListDresseur(){
-    //     AtomicReference<String> result = new AtomicReference<>(" ");
-
-    //     this.listDresseur.forEach(dresseur -> {
-
-    //         result.set(concate(result.get(), dresseur.getNom()));
-    //         }
-    //     );
-    //     return result.get();
-    // }
 
     private String afficherListDresseur() {
         // Use an array to hold the result as a workaround
@@ -61,16 +50,6 @@ public class School {
         return result[0].trim();
     }    
 
-//    private String afficherListDresseur(){
-//        String result = " ";
-//
-//        this.listDresseur.forEach(dresseur -> {
-//
-//            public void setResult{
-//                result = concate(result, dresseur.getNom());
-//            }
-//        }
-//    }
     public void former(){System.out.println("Je forme les dresseurs" + afficherListDresseur()); }
 
     public void entrainer(){}
