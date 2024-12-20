@@ -3,11 +3,11 @@ package sn.ousoka.GestionFile.model;
 public class ETicket {
     private int id;
     private int position;
-    private String status;
+    private QueueStatus status;
     private Localisation localisation;
 
     // Constructeur
-    public ETicket(int id, int position, String status, Localisation localisation) {
+    public ETicket(int id, int position, QueueStatus status, Localisation localisation) {
         this.id = id;
         this.position = position;
         this.status = status;
@@ -30,11 +30,11 @@ public class ETicket {
         this.position = position;
     }
 
-    public String getStatus() {
+    public QueueStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(QueueStatus status) {
         this.status = status;
     }
 

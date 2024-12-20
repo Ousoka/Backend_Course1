@@ -3,62 +3,44 @@ package sn.ousoka.GestionFile.service;
 import sn.ousoka.GestionFile.model.Service;
 import sn.ousoka.GestionFile.model.Localisation;
 import sn.ousoka.GestionFile.model.ETicket;
+import sn.ousoka.GestionFile.model.QueueStatus;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceGestionFile {
 
-    // This list will store all the tickets (in a real application, you would probably use a database)
-    private List<ETicket> tickets;
+    private List<ETicket> ticketQueue;  // Assuming a list of tickets in the queue
 
-    // Constructor
-    public ServiceGestionFile() {
-        this.tickets = new ArrayList<>();
+    // Method to get a list of all tickets
+    public List<ETicket> getAllTickets() {
+        return ticketQueue;
     }
+    // Constructor and other methods
 
-    // Method to generate a new ticket
-    public ETicket generateTicket(Localisation localisation) {
-        int nextTicketId = tickets.size() + 1;  // For simplicity, using the size of the list as the ticket ID
-        int positionInQueue = tickets.size() + 1; // The next position is the last size of the list + 1
-        ETicket ticket = new ETicket(nextTicketId, positionInQueue, "Waiting", localisation);
-        tickets.add(ticket);
-        return ticket;
-    }
+    // public ETicket getCurrentTicket() {
+    //     return tickets.isEmpty() ? null : tickets.get(0);
+    // }
 
-    // Method to get the current position of a ticket
-    public ETicket getTicketById(int ticketId) {
-        for (ETicket ticket : tickets) {
-            if (ticket.getId() == ticketId) {
-                return ticket;
+    // Method to serve the next client (call the next ticket)
+    public void callNextClient() {
+        for (ETicket ticket : ticketQueue) {
+            if (ticket.getStatus() == QueueStatus.PENDING) {
+                ticket.setStatus(QueueStatus.IN_PROGRESS);
+                break;  // Call only one client at a time
             }
         }
-        return null; // If no ticket is found with the given ID
     }
 
-    // Method to update the status of a ticket (e.g., move it to 'Being Processed')
-    public void updateTicketStatus(int ticketId, String newStatus) {
-        ETicket ticket = getTicketById(ticketId);
-        if (ticket != null) {
-            ticket.setStatus(newStatus);
+    // Method to mark a client as completed after being served
+    public void completeClient(ETicket ticket) {
+        if (ticket.getStatus() == QueueStatus.IN_PROGRESS) {
+            ticket.setStatus(QueueStatus.COMPLETED);
         }
     }
 
-    // Method to simulate calling the next ticket in the queue
-    public void callNextTicket() {
-        if (tickets.isEmpty()) {
-            System.out.println("No tickets in the queue.");
-            return;
-        }
-        ETicket nextTicket = tickets.get(0);  // Get the first ticket in the queue
-        updateTicketStatus(nextTicket.getId(), "Being Processed");
-        System.out.println("Now processing ticket ID: " + nextTicket.getId());
-        // Remove the ticket after it's processed (you can change this if you want to keep the processed tickets)
-        tickets.remove(0);
-    }
 
-    // Method to get the current queue status
-    public List<ETicket> getQueueStatus() {
-        return new ArrayList<>(tickets);
-    }
+    // public List<QueueStatus> getAllQueueStatuses() {
+    //     // Returns all queues' statuses
+    // }
 }

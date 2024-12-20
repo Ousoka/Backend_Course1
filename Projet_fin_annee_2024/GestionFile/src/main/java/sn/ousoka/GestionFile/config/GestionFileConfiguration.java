@@ -50,15 +50,15 @@ public class GestionFileConfiguration {
     }
 
     // Bean for In-Memory Ticket List (Initial Data)
-    @Bean
-    public List<ETicket> tickets() {
-        List<ETicket> initialTickets = new ArrayList<>();
-        // Create initial tickets for demonstration
-        initialTickets.add(new ETicket(101, 1, "Attente", seneauLocalisation()));
-        initialTickets.add(new ETicket(102, 2, "Attente", seneauLocalisation()));
-        initialTickets.add(new ETicket(201, 1, "Attente", orangeLocalisation()));
-        return initialTickets;
-    }
+    // @Bean
+    // public List<ETicket> tickets() {
+    //     List<ETicket> initialTickets = new ArrayList<>();
+    //     // Create initial tickets for demonstration
+    //     initialTickets.add(new ETicket(101, 1, "Attente", seneauLocalisation()));
+    //     initialTickets.add(new ETicket(102, 2, "Attente", seneauLocalisation()));
+    //     initialTickets.add(new ETicket(201, 1, "Attente", orangeLocalisation()));
+    //     return initialTickets;
+    // }
 
     // Bean for a List of Services (e.g., Seneau, Orange)
     @Bean
